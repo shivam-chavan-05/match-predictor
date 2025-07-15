@@ -9,4 +9,4 @@ db = client["match_predictor"]
 users = db["users"]
 matches = db["matches"]
 predictions = db["predictions"]
-cache_meta = db["cache_meta"]  # Add this line
+cache_meta = db["cache_meta"] 

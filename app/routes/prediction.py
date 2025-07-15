@@ -7,10 +7,10 @@ router = APIRouter()
 
 class Prediction(BaseModel):
     match_id: str
-    prediction: str  # Expected values: "win", "draw", "lose"
+    prediction: str 
 
 def get_user(token: str = Header(...)):
-    data = decode_token(token)  # Decodes JWT token and returns user info (assumed)
+    data = decode_token(token)
     user = users.find_one({"username": data["username"]})
     if not user:
         raise HTTPException(401, "Invalid user")
@@ -28,5 +28,4 @@ def predict(data: Prediction, user=Depends(get_user)):
 
 @router.get("/leaderboard")
 def leaderboard():
-    # Assuming users collection has 'username' and 'score' fields
     return list(users.find({}, {"username": 1, "score": 1, "_id": 0}))
